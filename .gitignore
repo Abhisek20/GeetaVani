@@ -1,0 +1,4 @@
+./ollama/.ipynb_checkpoints
+./ollama/deprecated
+./ollama/__pycache__
+./ollama/test_Ollama_RAG.ipynb
