@@ -4,4 +4,5 @@ This project is intended to create a chat application on top of open soourced LL
 
 ## Contributor
 Abhisek - abhisekg9516@gmail.com
+<br>
 Amandeep - amandeepsinghkhanna@gmail.com
