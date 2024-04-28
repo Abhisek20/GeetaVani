@@ -2,3 +2,5 @@
 ./ollama/deprecated
 ./ollama/__pycache__
 ./ollama/test_Ollama_RAG.ipynb
+./GeetaVani/cache
+./GeetaVani/db
