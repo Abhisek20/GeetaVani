@@ -1,0 +1,2 @@
+# GeetaVani
+This project is intended to create a chat application on top of open soourced LLM models like llama3, phi3 and etc. based on bhagwad geeta, people can ask generic questions about life and application will be able to give reply with taste of Geeta.
