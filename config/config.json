@@ -1,0 +1,9 @@
+{
+    "supported_models": [
+        "phi3",
+        "llama3"
+    ],
+    "temperature": 0,
+    "use_history": false,
+    "run_in_container": true
+}

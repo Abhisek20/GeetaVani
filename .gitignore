@@ -1,6 +1,8 @@
-./ollama/.ipynb_checkpoints
-./ollama/deprecated
-./ollama/__pycache__
-./ollama/test_Ollama_RAG.ipynb
-./GeetaVani/cache
-./GeetaVani/db
+src/.ipynb_checkpoints
+src/deprecated/
+src/__pycache__
+src/test_Ollama_RAG.ipynb
+cache/
+db/
+data/chunks/
+data/ollama/

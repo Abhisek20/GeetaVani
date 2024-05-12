@@ -1,6 +1,6 @@
-    """RAG script to handle text retreival and generation.
-   
-    """
+"""RAG script to handle text retreival and generation.
+
+"""
 from langchain_community.vectorstores import Chroma
 from langchain_community.chat_models import ChatOllama
 from langchain_community.embeddings import FastEmbedEmbeddings
@@ -25,9 +25,15 @@ class RAG:
     retriever = None
     chain = None
 
-    def __init__(self, model_name: str = "phi3", temperature: float = 0.8, repeat_penalty=1.5, use_history: bool = False) -> None:
+    def __init__(self,
+                 model_name: str = "phi3",
+                 temperature: float = 0.8,
+                 repeat_penalty=1.5,
+                 use_history: bool = False,
+                 base_url: str = "http://localhost:11434") -> None:
+
         self.model = ChatOllama(
-            model=model_name, temperature=temperature, repeat_penalty=repeat_penalty, timeout=120)
+            model=model_name, temperature=temperature, repeat_penalty=repeat_penalty, timeout=120, base_url=base_url)
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=2500, chunk_overlap=200)
 
@@ -79,8 +85,8 @@ class RAG:
              <|assistant|>""")
 
     def ingest(self, file_path: str):
-        if pathlib.Path("../data/chunks/chunks.pkl").exists():
-            chunks = pickle.load(open("../data/chunks/chunks.pkl", "rb"))
+        if pathlib.Path("./data/chunks/chunks.pkl").exists():
+            chunks = pickle.load(open("./data/chunks/chunks.pkl", "rb"))
 
         else:
 
@@ -91,19 +97,19 @@ class RAG:
             ).load()
             chunks = self.text_splitter.split_documents(self.docs)
             chunks = filter_complex_metadata(chunks)
-            pickle.dump(chunks, open("../data/chunks/chunks.pkl", "wb"))
+            pickle.dump(chunks, open("./data/chunks/chunks.pkl", "wb"))
 
         db = Chroma
 
-        if len(os.listdir("../db")) > 0:
+        if len(os.listdir("./db")) > 0:
 
-            vector_store = db(persist_directory="../db",
-                              embedding_function=FastEmbedEmbeddings(cache_dir="../cache"))
+            vector_store = db(persist_directory="./db",
+                              embedding_function=FastEmbedEmbeddings(cache_dir="./cache"))
 
         else:
             vector_store = db.from_documents(
-                documents=chunks, persist_directory="../db",
-                embedding=FastEmbedEmbeddings(cache_dir="../cache"))
+                documents=chunks, persist_directory="./db",
+                embedding=FastEmbedEmbeddings(cache_dir="./cache"))
 
             vector_store.persist()
 
